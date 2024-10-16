@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Bias</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: radial-gradient(circle, rgba(255,182,193,1) 0%, rgba(255,105,180,1) 60%, rgba(255,20,147,1) 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .message {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 80px; /* Space between Ni-ki and Jay sections */
+        }
+        .content-container div {
+            text-align: center;
+        }
+        .content-container img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .content-container img:hover {
+            transform: scale(1.1);
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff69b4; /* Soft pink button color */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button-container button:hover {
+            background-color: #ff1493; /* Darker pink on hover */
+            transform: translateY(-3px);
+        }
+        /* Make sure the "Both" button is independent and can move without affecting others */
+        .both-button {
+            position: absolute;
+            z-index: 1000;
+        }
+        .both-button button {
+            padding: 12px 30px;
+            font-size: 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .both-button button:hover {
+            background-color: #ff1493; /* Darker pink on hover */
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="message" id="content">Choose your bias!</div>
+    
+    <!-- Ni-ki and Jay content (Images) -->
+    <div class="content-container">
+        <div>
+            <img src="https://i.pinimg.com/736x/78/73/87/7873874c6598e293f82e209f8f4d38cd.jpg" alt="Ni-ki Image">
+        </div>
+        <div>
+            <img src="https://unnielooks.com/cdn/shop/articles/90260DBA-1F92-4AB5-8959-0DA29932EE82.jpg?v=1666917155&width=1100" alt="Jay Image">
+        </div>
+    </div>
+
+    <!-- Ni-ki, Jay, and Both buttons aligned on the same line -->
+    <div class="button-container">
+        <button id="niki-btn">Ni-ki</button>
+        <button id="both-btn">Both</button>
+        <button id="jay-btn">Jay</button>
+    </div>
+
+    <script>
+        // Functionality for Ni-ki and Jay buttons
+        document.getElementById('niki-btn').addEventListener('click', function() {
+            // Redirect to the new page for Ni-ki
+            window.location.href = "niki.html"; // Make sure this file exists
+        });
+
+        document.getElementById('jay-btn').addEventListener('click', function() {
+            // Redirect to the new page for Jay
+            window.location.href = "jay.html"; // Make sure this file exists
+        });
+
+        // Functionality for the "Both" button
+        const bothBtn = document.getElementById('both-btn');
+
+        // Move the "Both" button randomly when clicked without affecting others
+        bothBtn.addEventListener('click', function() {
+            // Get window dimensions and button dimensions
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const btnWidth = bothBtn.offsetWidth;
+            const btnHeight = bothBtn.offsetHeight;
+
+            // Calculate a random position within the visible window
+            const randomX = Math.floor(Math.random() * (windowWidth - btnWidth));
+            const randomY = Math.floor(Math.random() * (windowHeight - btnHeight));
+
+            // Move the "Both" button to the new position
+            bothBtn.style.position = 'absolute';
+            bothBtn.style.left = `${randomX}px`;
+            bothBtn.style.top = `${randomY}px`;
+        });
+    </script>
+</body>
+</html>
